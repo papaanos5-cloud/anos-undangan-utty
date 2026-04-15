@@ -424,17 +424,29 @@
     </div>
     
 
-    <audio autoplay>
-      <source src="djcalonmantu.mp3" type="audio/mpeg"> 
-    </audio>
-    
-    <script>
-        // Loading Screen
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                document.getElementById('loading').classList.add('hidden');
-            }, 2000);
+    <audio id="bgm">
+    <source src="djcalonmantu.mp3" type="audio/mpeg">
+    </audio>>
+ <script>
+    window.addEventListener('load', function() {
+        const audio = document.getElementById("bgm");
+
+        // coba autoplay
+        audio.play().catch(() => {
+            // kalau gagal, tunggu interaksi pertama
+            document.body.addEventListener('click', () => {
+                audio.play();
+            }, { once: true });
         });
+    });
+</script>
+        <script>
+            // Loading Screen
+            window.addEventListener('load', function() {
+                setTimeout(() => {
+                    document.getElementById('loading').classList.add('hidden');
+                }, 2000);
+            });
 
         // Countdown Timer
         function updateCountdown() {
@@ -476,6 +488,7 @@
                 });
             });
         });
+        
     </script>
 </body>
 </html>
